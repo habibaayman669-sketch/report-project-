@@ -1,0 +1,260 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.wrap{font-family:'Tajawal',sans-serif;direction:rtl;background:var(--color-background-tertiary);min-height:100vh;padding-bottom:32px}
+.hdr{background:linear-gradient(135deg,#1a3a5c 0%,#1e4d8c 60%,#2563a8 100%);color:white;padding:28px 32px 24px;position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;top:-40px;left:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,0.04)}
+.hdr::after{content:'';position:absolute;bottom:-60px;right:60px;width:260px;height:260px;border-radius:50%;background:rgba(255,255,255,0.03)}
+.hdr-top{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;position:relative;z-index:1}
+.hdr h1{font-size:1.5rem;font-weight:800;margin-bottom:3px}
+.hdr-sub{font-size:0.82rem;opacity:0.6;font-weight:300}
+.badge{background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.2);padding:5px 14px;border-radius:99px;font-size:0.75rem;letter-spacing:0.5px;white-space:nowrap}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;padding:20px 32px;max-width:1100px;margin:0 auto}
+.kpi{background:var(--color-background-primary);border-radius:14px;border:0.5px solid var(--color-border-tertiary);padding:18px 20px;display:flex;align-items:center;gap:14px}
+.kpi-ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0}
+.kpi-ico.b{background:#e8f0fb}.kpi-ico.g{background:#ecfdf5}.kpi-ico.r{background:#fef2f2}
+.kpi-num{font-size:1.9rem;font-weight:800;line-height:1}
+.kpi-num.b{color:#2563a8}.kpi-num.g{color:#10b981}.kpi-num.r{color:#ef4444}
+.kpi-lbl{font-size:0.75rem;color:var(--color-text-secondary);margin-top:3px;font-weight:500}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:0 32px 20px;max-width:1100px;margin:0 auto}
+.fw{grid-column:1/-1}
+.card{background:var(--color-background-primary);border-radius:16px;border:0.5px solid var(--color-border-tertiary);overflow:hidden}
+.ch{padding:16px 22px 13px;border-bottom:0.5px solid var(--color-border-tertiary);display:flex;align-items:center;gap:9px}
+.ch-ico{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.ch-ico.b{background:#e8f0fb}.ch-ico.r{background:#fef2f2}.ch-ico.g{background:#ecfdf5}.ch-ico.a{background:#fffbeb}
+.ch-ttl{font-size:0.88rem;font-weight:700;color:#1a3a5c}
+.cb{padding:16px 22px 20px}
+.slbl{font-size:0.72rem;font-weight:700;color:var(--color-text-secondary);letter-spacing:0.5px;text-transform:uppercase;margin-bottom:7px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{padding:4px 12px;border-radius:99px;font-size:0.75rem;font-weight:600}
+.chip.s{background:#ecfdf5;color:#065f46;border:1px solid #a7f3d0}
+.chip.r{background:#fef2f2;color:#991b1b;border:1px solid #fecaca}
+.rcli{border:1px solid var(--color-border-tertiary);border-radius:12px;margin-bottom:12px;overflow:hidden}
+.rcli:last-child{margin-bottom:0}
+.rcli-hdr{background:#fef2f2;padding:10px 15px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #fecaca}
+.rdot{width:7px;height:7px;border-radius:50%;background:#ef4444;flex-shrink:0}
+.rcli-name{font-weight:700;font-size:0.85rem;color:#991b1b}
+.rcli-body{padding:11px 15px}
+.iss{display:flex;gap:8px;align-items:flex-start;margin-bottom:6px;font-size:0.79rem;color:var(--color-text-secondary);line-height:1.55}
+.iss:last-child{margin-bottom:0}
+.iss::before{content:'›';color:#ef4444;font-weight:700;flex-shrink:0}
+.crow{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:0.5px solid var(--color-border-tertiary)}
+.crow:last-of-type{border-bottom:none}
+.cbadge{padding:3px 12px;border-radius:99px;font-size:0.75rem;font-weight:700;background:#fffbeb;color:#92400e;border:1px solid #fde68a;white-space:nowrap}
+.creason{font-size:0.77rem;color:var(--color-text-secondary);flex:1;line-height:1.4}
+.abox{margin-top:13px;background:#fffbeb;border-radius:9px;padding:9px 12px;font-size:0.77rem;color:#78350f;border-right:3px solid #f59e0b;line-height:1.45}
+.prow{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:0.5px solid var(--color-border-tertiary);font-size:0.79rem}
+.prow:last-child{border-bottom:none}
+.pcli{font-weight:700;color:#1a3a5c;min-width:70px}
+.ptag{background:#fef3c7;color:#92400e;padding:2px 9px;border-radius:99px;font-size:0.7rem;font-weight:600;border:1px solid #fde68a}
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.iitem{background:#fff5f5;border-radius:9px;padding:10px 12px;font-size:0.78rem;color:#7f1d1d;border:1px solid #fecaca;line-height:1.45}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.pcard{border-radius:12px;overflow:hidden;border:0.5px solid var(--color-border-tertiary)}
+.pcard-hdr{padding:14px 16px 12px;color:white}
+.pcard-name{font-size:0.98rem;font-weight:800;margin-bottom:3px}
+.pcard-goal{font-size:0.73rem;opacity:0.8;line-height:1.35}
+.pcard-body{padding:12px 16px 14px;background:var(--color-background-primary)}
+.pslbl{font-size:0.7rem;font-weight:700;color:#2563a8;margin-bottom:8px;letter-spacing:0.3px}
+.pstep{display:flex;gap:7px;align-items:flex-start;font-size:0.77rem;color:var(--color-text-primary);margin-bottom:6px;line-height:1.45}
+.pstep:last-of-type{margin-bottom:0}
+.pbul{width:5px;height:5px;border-radius:50%;background:#3b82f6;flex-shrink:0;margin-top:4px}
+.pfoc{margin-top:10px;background:#e8f0fb;border-radius:7px;padding:7px 10px;font-size:0.72rem;color:#1a3a5c;font-weight:600;display:flex;gap:5px;align-items:flex-start;line-height:1.35}
+.ogrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.oitem{background:var(--color-background-secondary);border-radius:10px;padding:12px 14px;border-right:3px solid #3b82f6}
+.oitem-lbl{font-size:0.69rem;font-weight:700;color:#3b82f6;margin-bottom:4px;letter-spacing:0.4px;text-transform:uppercase}
+.oitem-txt{font-size:0.78rem;color:var(--color-text-primary);line-height:1.5}
+.nitem{display:flex;gap:10px;align-items:flex-start;padding:11px 14px;background:#fffbeb;border-radius:10px;border-right:3px solid #f59e0b;margin-bottom:8px}
+.nitem:last-child{margin-bottom:0}
+.ntxt{font-size:0.78rem;color:#78350f;line-height:1.55}
+.aigrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.aitool{background:linear-gradient(135deg,#e8f0fb,#f0f7ff);border-radius:12px;padding:18px 14px 14px;border:0.5px solid #c7ddf7;text-align:center}
+.aiemj{font-size:1.6rem;margin-bottom:8px;display:block}
+.ainame{font-size:0.88rem;font-weight:800;color:#1a3a5c;margin-bottom:6px}
+.aidesc{font-size:0.74rem;color:var(--color-text-secondary);line-height:1.5}
+.ftr{text-align:center;padding:18px 32px;font-size:0.73rem;color:var(--color-text-secondary);border-top:0.5px solid var(--color-border-tertiary);max-width:1100px;margin:0 auto}
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<div class="wrap">
+
+<div class="hdr">
+  <div class="hdr-top">
+    <div>
+      <h1>📊 Account Management Report</h1>
+      <div class="hdr-sub">تقرير متابعة العملاء — نظرة شاملة على الأداء والخطط</div>
+    </div>
+    <div class="badge">MAY 2025</div>
+  </div>
+</div>
+
+<div class="kpis">
+  <div class="kpi"><div class="kpi-ico b">👥</div><div><div class="kpi-num b">9</div><div class="kpi-lbl">إجمالي العملاء</div></div></div>
+  <div class="kpi"><div class="kpi-ico g">✅</div><div><div class="kpi-num g">6</div><div class="kpi-lbl">عملاء راضين</div></div></div>
+  <div class="kpi"><div class="kpi-ico r">⚠️</div><div><div class="kpi-num r">3</div><div class="kpi-lbl">عملاء في خطر</div></div></div>
+</div>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="ch"><div class="ch-ico b">🏢</div><div class="ch-ttl">نظرة عامة على العملاء</div></div>
+    <div class="cb">
+      <div class="slbl" style="margin-bottom:6px">العملاء الراضون</div>
+      <div class="chips" style="margin-bottom:14px">
+        <span class="chip s">Laman</span><span class="chip s">Fiere</span><span class="chip s">By Sera</span><span class="chip s">Delile</span><span class="chip s">حلويات اللازينة</span><span class="chip s">الحربي</span>
+      </div>
+      <div class="slbl" style="margin-bottom:6px">العملاء في خطر</div>
+      <div class="chips"><span class="chip r">TRX ⚠️</span><span class="chip r">GFA ⚠️</span><span class="chip r">Sazera ⚠️</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><div class="ch-ico a">💰</div><div class="ch-ttl">التحصيلات والمتأخرات</div></div>
+    <div class="cb">
+      <div class="slbl" style="margin-bottom:8px">المتأخرون في السداد</div>
+      <div class="crow"><span class="cbadge">الحربي</span><span class="creason">لم يتم تسوية المبالغ المستحقة</span></div>
+      <div class="crow"><span class="cbadge">TRX</span><span class="creason">عدم الاستجابة عند إرسال التسويات</span></div>
+      <div class="crow"><span class="cbadge">GFA</span><span class="creason">تأخير في الرد وعدم المتابعة</span></div>
+      <div class="abox">⚡ السبب الرئيسي: عدم استجابة العملاء عند إرسال التسويات</div>
+    </div>
+  </div>
+
+  <div class="card fw">
+    <div class="ch"><div class="ch-ico r">🔴</div><div class="ch-ttl">تفاصيل العملاء في خطر</div></div>
+    <div class="cb">
+      <div class="rcli"><div class="rcli-hdr"><div class="rdot"></div><div class="rcli-name">Sazera</div></div><div class="rcli-body"><div class="iss">تأخير في الرد على العميل بخصوص خطة المرحلة القادمة</div><div class="iss">الحاجة إلى وضوح أكبر في الاتجاه لضمان استمرارية رضا العميل</div></div></div>
+      <div class="rcli"><div class="rcli-hdr"><div class="rdot"></div><div class="rcli-name">TRX</div></div><div class="rcli-body"><div class="iss">عدم وضوح كافٍ في فهم منتجات العميل من طرف الفريق حتى الآن</div><div class="iss">مشاكل في وسيلة الدفع (الفيزا) تؤثر على استقرار الحملات</div><div class="iss">العميل مهتم بتقنيات الـ AI مما يتطلب مواكبة مستمرة وتقديم حلول متطورة</div></div></div>
+      <div class="rcli"><div class="rcli-hdr"><div class="rdot"></div><div class="rcli-name">GFA</div></div><div class="rcli-body"><div class="iss">لم يتم إطلاق الحملات الإعلانية حتى الآن</div><div class="iss">تأخير في استكمال الإجراءات من طرف العميل</div><div class="iss">ضعف في التواصل وعدم انتظام الردود</div><div class="iss">الحاجة إلى تعيين Account Manager من طرف العميل</div></div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><div class="ch-ico a">📱</div><div class="ch-ttl">مشاكل المنصات</div></div>
+    <div class="cb">
+      <div style="font-size:0.77rem;color:var(--color-text-secondary);margin-bottom:12px;line-height:1.45">ضعف المتابعة وإهمال النشر المنتظم على بعض المنصات</div>
+      <div class="prow"><div class="pcli">GFA</div><span class="ptag">Snapchat</span><span class="ptag">TikTok</span></div>
+      <div class="prow"><div class="pcli">TRX</div><span class="ptag">Snapchat</span></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><div class="ch-ico r">⚙️</div><div class="ch-ttl">المشاكل الداخلية</div></div>
+    <div class="cb">
+      <div class="igrid">
+        <div class="iitem">🔁 عدم سير التاسك بشكل سليم بعد استلامه</div>
+        <div class="iitem">🎯 وجود عشوائية في التنفيذ</div>
+        <div class="iitem">💡 ضعف في التركيز</div>
+        <div class="iitem">🔗 عدم التنسيق بين الفرق</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card fw">
+    <div class="ch"><div class="ch-ico b">📅</div><div class="ch-ttl">الخطة الشهرية — مايو 2025</div></div>
+    <div class="cb">
+      <div class="pgrid">
+        <div class="pcard">
+          <div class="pcard-hdr" style="background:linear-gradient(135deg,#1a3a5c,#2563a8)">
+            <div class="pcard-name">GFA</div><div class="pcard-goal">إطلاق الحملات وتحسين جاهزية الحسابات</div>
+          </div>
+          <div class="pcard-body">
+            <div class="pslbl">🎯 التنفيذ</div>
+            <div class="pstep"><span class="pbul"></span>متابعة إعداد التتبع للموقع</div>
+            <div class="pstep"><span class="pbul"></span>تفعيل الحملات الإعلانية</div>
+            <div class="pstep"><span class="pbul"></span>تخصيص ميزانية لـ Engagement &amp; Reach</div>
+            <div class="pstep"><span class="pbul"></span>حل مشكلة Business Manager</div>
+            <div class="pfoc">🔍 <span>تجهيز البنية وإطلاق الحملات بشكل سليم</span></div>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-hdr" style="background:linear-gradient(135deg,#1e3a5f,#1d6fa4)">
+            <div class="pcard-name">TRX</div><div class="pcard-goal">استقرار الحسابات وتوسيع الحملات</div>
+          </div>
+          <div class="pcard-body">
+            <div class="pslbl">🎯 التنفيذ</div>
+            <div class="pstep"><span class="pbul"></span>حل مشكلة الفيزا</div>
+            <div class="pstep"><span class="pbul"></span>متابعة تغيير اسم الرقم مع Meta</div>
+            <div class="pstep"><span class="pbul"></span>تفعيل الحملات على باقي المنصات</div>
+            <div class="pfoc">🔍 <span>استقرار الأداء والتوسع</span></div>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-hdr" style="background:linear-gradient(135deg,#1e4060,#1a6ea8)">
+            <div class="pcard-name">الحربي</div><div class="pcard-goal">استكمال جاهزية الحسابات</div>
+          </div>
+          <div class="pcard-body">
+            <div class="pslbl">🎯 التنفيذ</div>
+            <div class="pstep"><span class="pbul"></span>استلام WhatsApp Business</div>
+            <div class="pstep"><span class="pbul"></span>استلام الفيزا</div>
+            <div class="pstep"><span class="pbul"></span>حل مشكلة Business Manager</div>
+            <div class="pstep"><span class="pbul"></span>توثيق Google Business</div>
+            <div class="pfoc">🔍 <span>تجهيز البنية التشغيلية</span></div>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-hdr" style="background:linear-gradient(135deg,#1b3d5e,#2471b5)">
+            <div class="pcard-name">لمان</div><div class="pcard-goal">تجهيز محتوى الصيف</div>
+          </div>
+          <div class="pcard-body">
+            <div class="pslbl">🎯 التنفيذ</div>
+            <div class="pstep"><span class="pbul"></span>استلام الكوليكشن الجديد</div>
+            <div class="pstep"><span class="pbul"></span>العمل على موديلات متوفرة</div>
+            <div class="pfoc">🔍 <span>استمرارية المحتوى</span></div>
+          </div>
+        </div>
+        <div class="pcard">
+          <div class="pcard-hdr" style="background:linear-gradient(135deg,#1a3c5e,#1e6fad)">
+            <div class="pcard-name">حلويات اللازينة</div><div class="pcard-goal">تحسين الأداء وزيادة التفاعل</div>
+          </div>
+          <div class="pcard-body">
+            <div class="pslbl">🎯 التنفيذ</div>
+            <div class="pstep"><span class="pbul"></span>تحسين الحملات الإعلانية</div>
+            <div class="pstep"><span class="pbul"></span>متابعة الردود بشكل منتظم</div>
+            <div class="pfoc">🔍 <span>تحسين النتائج</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card fw">
+    <div class="ch"><div class="ch-ico g">🚀</div><div class="ch-ttl">الفرص — Upselling &amp; Expansion</div></div>
+    <div class="cb">
+      <div class="slbl" style="margin-bottom:8px">Upselling</div>
+      <div class="ogrid" style="margin-bottom:16px">
+        <div class="oitem"><div class="oitem-lbl">Sazera &amp; Fiere</div><div class="oitem-txt">تقديم خدمات السوشيال ميديا لعملاء البراندينج</div></div>
+        <div class="oitem"><div class="oitem-lbl">Laman</div><div class="oitem-txt">تفعيل الحملات الإعلانية والتوسع على منصات إضافية</div></div>
+        <div class="oitem"><div class="oitem-lbl">حلويات اللازينة</div><div class="oitem-txt">اقتراح إنشاء موقع إلكتروني جديد لتحسين تجربة المستخدم</div></div>
+      </div>
+      <div class="slbl" style="margin-bottom:8px">Expansion</div>
+      <div class="ogrid">
+        <div class="oitem"><div class="oitem-lbl">Helium</div><div class="oitem-txt">تفعيل حملات Helium بشكل أوسع</div></div>
+        <div class="oitem"><div class="oitem-lbl">AI Photoshoot</div><div class="oitem-txt">التوسع في خدمة الفوتوشوت باستخدام الذكاء الاصطناعي</div></div>
+        <div class="oitem"><div class="oitem-lbl">Vibe Coding</div><div class="oitem-txt">تقديم خدمة إنشاء مواقع بتكلفة أقل</div></div>
+        <div class="oitem"><div class="oitem-lbl">AI Services</div><div class="oitem-txt">التوسع في خدمات الذكاء الاصطناعي على مستوى جميع العملاء</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><div class="ch-ico a">📌</div><div class="ch-ttl">ملاحظات عامة — مايو</div></div>
+    <div class="cb">
+      <div class="nitem"><span style="font-size:14px">🎉</span><div class="ntxt">الحاجة إلى تنفيذ تهنئة عيد للأكونتات نظرًا لعدم تضمينها في الكالندر</div></div>
+      <div class="nitem"><span style="font-size:14px">📆</span><div class="ntxt">إعداد كالندر شهر يونيو والانتهاء منه قبل عيد الأضحى لضمان عدم تأخير التسليمات</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="ch"><div class="ch-ico b">🤖</div><div class="ch-ttl">استخدام الذكاء الاصطناعي</div></div>
+    <div class="cb">
+      <div class="aigrid">
+        <div class="aitool"><span class="aiemj">🧠</span><div class="ainame">Claude</div><div class="aidesc">إنشاء مشروع مخصص لكل عميل لتنظيم العمل</div></div>
+        <div class="aitool"><span class="aiemj">📚</span><div class="ainame">NotebookLM</div><div class="aidesc">تنظيم المعلومات وتلخيص الملفات وربط البيانات</div></div>
+        <div class="aitool"><span class="aiemj">💬</span><div class="ainame">ChatGPT</div><div class="aidesc">داعم أساسي بجانب جميع الأدوات المستخدمة</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="ftr">تقرير Account Management — مايو 2025 &nbsp;|&nbsp; جميع البيانات سرية وللاستخدام الداخلي فقط</div>
+</div>
